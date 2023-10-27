@@ -3,6 +3,6 @@ export const routes = {
 		baseURL: "http://localhost:5000/api",
 	},
 	remote: {
-		baseURL: "https://booking-app-server.netlify.app/api",
+		baseURL: "https://booking-com-server.vercel.app/api",
 	},
 };
