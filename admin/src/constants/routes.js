@@ -12,7 +12,7 @@ export const routes = {
       ...headers,
    },
    remote: {
-      baseURL: "https://booking-com-admin.vercel.app/api",
+      baseURL: "https://booking-com-server.vercel.app/api",
       ...headers,
    },
 };
