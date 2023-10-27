@@ -32,7 +32,7 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 			return { from: _from, to: _to };
 		});
 
-		window.scrollTo({ top: 0, behavior: "smooth" });
+		window.scrollTo({ top: 0 });
 	};
 
 	const prevWidget = () => {
@@ -44,7 +44,7 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 			return { from: _from, to: _to };
 		});
 
-		window.scrollTo({ top: 0, behavior: "smooth" });
+		window.scrollTo({ top: 0 });
 	};
 
 	const handleNavigate = async (_id) => {
