@@ -1,0 +1,41 @@
+@use "@/assets/sass/mixins" as *;
+
+.features-section {
+	padding: 20px;
+	h1 {
+		font-size: 22px;
+		@include width(sm) {
+			font-size: 24px;
+		}
+	}
+	.features {
+		@include grid(150px);
+		gap: 20px;
+		@include width(sm) {
+			@include grid(200px);
+		}
+		.feature {
+			img {
+				width: 100%;
+				min-height: 300px;
+				object-fit: cover;
+				@include width(md) {
+					min-height: 400px;
+				}
+			}
+			p {
+				margin-block: 10px;
+			}
+			.rate {
+				@include flex(flex-start, center);
+				gap: 20px;
+				span {
+					background-color: get(primary);
+					color: white;
+					padding: 3px 5px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}

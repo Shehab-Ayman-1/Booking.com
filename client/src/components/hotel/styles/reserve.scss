@@ -1,0 +1,96 @@
+@use "@/assets/sass/mixins" as *;
+
+.reserve-section {
+	@include flex(space-between, flex-start);
+	padding: 0 20px;
+	flex-direction: column;
+	@include width(md) {
+		flex-direction: row;
+		padding: 20px;
+	}
+	.description {
+		flex: 3;
+		.title {
+			font-size: 20px;
+			margin-bottom: 10px;
+			@include width(sm) {
+				font-size: 25px;
+			}
+			@include width(md) {
+				font-size: 30px;
+			}
+			@include width(lg) {
+				font-size: 35px;
+			}
+		}
+		.desc {
+			letter-spacing: 1px;
+			font-size: 12px;
+			margin-bottom: 10px;
+			@include width(md) {
+				font-size: 14px;
+			}
+			@include width(lg) {
+				font-size: 16px;
+			}
+		}
+	}
+	.reserve {
+		background-color: rgba(#003088, 0.22);
+		width: 100%;
+		padding: 10px;
+		border-radius: 10px;
+		@include width(md) {
+			width: initial;
+			flex: 1;
+			padding: 20px;
+		}
+		.title {
+			margin-bottom: 10px;
+			font-size: 14px;
+			@include width(xsm) {
+				font-size: 16px;
+			}
+			@include width(lg) {
+				font-size: 18px;
+			}
+		}
+		.desc {
+			font-size: 12px;
+			@include width(xsm) {
+				font-size: 14px;
+			}
+		}
+		.price {
+			padding-right: 5px;
+			font-size: 16px;
+			@include width(sm) {
+				font-size: 18px;
+			}
+			@include width(md) {
+				font-size: 20px;
+			}
+			@include width(lg) {
+				font-size: 25px;
+			}
+		}
+		.nights {
+			font-size: 16px;
+			white-space: nowrap;
+			@include width(sm) {
+				font-size: 18px;
+			}
+			@include width(md) {
+				font-size: 20px;
+			}
+			@include width(lg) {
+				font-size: 25px;
+			}
+		}
+		.mybtn {
+			@media (max-width: 390px) {
+				font-size: 12px;
+			}
+		}
+	}
+}

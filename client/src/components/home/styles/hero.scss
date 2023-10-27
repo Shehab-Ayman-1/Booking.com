@@ -1,0 +1,178 @@
+@use "@/assets/sass/mixins" as *;
+
+.whitespace-none {
+	white-space: nowrap;
+}
+
+.hero-section {
+	background-color: get(primary);
+	padding: 10px;
+	@include width(md) {
+		padding: 10px 20px;
+	}
+	.hero {
+		text-align: center;
+		padding-bottom: 100px;
+		.heading {
+			color: get(white);
+			font-size: 25px;
+			margin-bottom: 5px;
+			@include width(sm) {
+				font-size: 30px;
+				margin-bottom: 10px;
+			}
+			@include width(md) {
+				font-size: 35px;
+				margin-bottom: 15px;
+			}
+			@include width(lg) {
+				font-size: 40px;
+				margin-bottom: 20px;
+			}
+			@include width(xlg) {
+				font-size: 50px;
+			}
+		}
+		.description {
+			color: #aaa;
+			font-size: 12px;
+			margin-bottom: 5px;
+			@include width(sm) {
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+			@include width(md) {
+				font-size: 16px;
+				margin-bottom: 15px;
+			}
+			@include width(lg) {
+				font-size: 18px;
+				margin-bottom: 20px;
+			}
+			@include width(xlg) {
+				font-size: 20px;
+				margin-bottom: 30px;
+			}
+		}
+		button {
+			margin: 10px auto;
+		}
+	}
+	.search {
+		@include flex(space-between, center);
+		background-color: get(white);
+		padding: 10px;
+		flex-wrap: wrap;
+		margin-bottom: -40px;
+		border: 3px solid get(secondary);
+		@include width(md) {
+			flex-wrap: nowrap;
+		}
+		& > div {
+			width: 100%;
+			margin-right: 10px;
+		}
+		.locations {
+			z-index: 3;
+			margin-bottom: 10px;
+			border-right: none;
+			@include width(md) {
+				margin-bottom: 0;
+				border-right: get(border);
+			}
+			p {
+				font-size: 14px;
+				font-weight: 500;
+				@include width(xsm) {
+					font-size: 16px;
+				}
+				@include width(md) {
+					font-size: 18px;
+				}
+			}
+			h3 {
+				font-size: 16px;
+				font-weight: normal;
+				padding-block: 10px;
+				border-bottom: get(border);
+				&:hover {
+					background-color: get(white-bg);
+				}
+				@include width(xsm) {
+					font-size: 18px;
+				}
+			}
+		}
+
+		.calender {
+			z-index: 2;
+			margin-bottom: 10px;
+			border-right: none;
+			@include width(md) {
+				margin-bottom: 0;
+				border-right: get(border);
+			}
+			.menu {
+				max-height: 350px !important;
+				width: fit-content;
+				right: 50%;
+				transform: translateX(50%);
+			}
+			p {
+				font-size: 14px;
+				font-weight: 500;
+				@include width(xsm) {
+					font-size: 16px;
+				}
+				@include width(md) {
+					font-size: 18px;
+				}
+				&.whitespace-none {
+					display: inline-block;
+				}
+			}
+		}
+		.options {
+			z-index: 1;
+			p {
+				font-size: 14px;
+				font-weight: 500;
+				@include width(xsm) {
+					font-size: 16px;
+				}
+				@include width(md) {
+					font-size: 18px;
+				}
+			}
+			.menu {
+				.flex {
+					border-bottom: get(border);
+					&:hover {
+						background-color: get(white-bg);
+					}
+					.plus,
+					.minus {
+						background-color: get(primary);
+						color: get(white);
+						padding: 5px 10px;
+						margin: 10px;
+						border-radius: 10px;
+					}
+					.plus {
+						margin-left: auto;
+					}
+					.name {
+						font-weight: normal;
+						margin-block: auto;
+					}
+					.count {
+						margin: auto 0;
+					}
+					i {
+						user-select: none;
+					}
+				}
+			}
+		}
+	}
+}

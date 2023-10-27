@@ -1,0 +1,57 @@
+@use "@/assets/sass/mixins" as *;
+
+.banner-section {
+	padding: 20px;
+	.banner {
+		& > div:first-of-type {
+			flex-wrap: wrap;
+			.title {
+				font-size: 20px;
+				@include width(sm) {
+					font-size: 25px;
+				}
+				@include width(md) {
+					font-size: 30px;
+				}
+				@include width(lg) {
+					font-size: 35px;
+				}
+			}
+		}
+
+		& > div:last-of-type {
+			%mediaQueries {
+				font-size: 12px;
+				@include width(md) {
+					font-size: 14px;
+				}
+				@include width(lg) {
+					font-size: 16px;
+				}
+			}
+			.bed-icon {
+				@extend %mediaQueries;
+				display: none;
+				@include width(sm) {
+					display: initial;
+				}
+			}
+			.description {
+				@extend %mediaQueries;
+				color: #666;
+			}
+			.rate {
+				@extend %mediaQueries;
+				color: get(primary);
+				line-height: 2;
+				letter-spacing: 1px;
+			}
+			.green {
+				@extend %mediaQueries;
+				color: green;
+				line-height: 2;
+				font-weight: 500;
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+@use "@/assets/sass/mixins" as *;
+
+footer {
+	padding: 20px;
+	nav {
+		@include grid(190px);
+		gap: 20px;
+		@include width(sm) {
+			@include grid(250px);
+		}
+		.flex-start {
+			width: fit-content;
+			&:hover {
+				.link {
+					color: get(primary);
+					margin-left: 10px;
+				}
+			}
+			.link {
+				color: #555;
+				line-height: 2;
+				font-size: 14px;
+				cursor: pointer;
+				@include width(md) {
+					font-size: 16px;
+				}
+			}
+		}
+	}
+	.copyright {
+		color: get(dimBlack);
+		font-size: 12px;
+		font-weight: 500;
+		margin-top: 20px;
+		border-top: get(border);
+		@include width(sm) {
+			font-size: 14px;
+		}
+		@include width(md) {
+			font-size: 16px;
+		}
+		@include width(lg) {
+			font-size: 18px;
+		}
+	}
+}

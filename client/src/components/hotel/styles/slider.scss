@@ -1,0 +1,71 @@
+@use "@/assets/sass/mixins" as *;
+
+.slider-section {
+	padding: 20px;
+	.images-container {
+		@include grid(180px);
+		gap: 20px;
+		@include width(md) {
+			@include grid(300px);
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			cursor: pointer;
+		}
+	}
+	.slider {
+		@include fixed(tl, 0, 0);
+		width: 100%;
+		height: 100%;
+		z-index: 99999;
+		.overlay {
+			background-color: rgba(0, 0, 0, 0.85);
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+		.wrapper {
+			@include absolute(tl, 50%, 50%);
+			width: 80%;
+			height: 80%;
+			overflow: hidden;
+			transform: translate(-50%, -50%);
+			.slide {
+				width: 100%;
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				position: absolute;
+				transition: 0.2s linear;
+				opacity: 0;
+				&.active {
+					opacity: 1;
+				}
+			}
+		}
+		.close-icon {
+			@include absolute(tr, 20px, 20px);
+			color: get(white);
+			font-size: 40px;
+		}
+		.next,
+		.prev {
+			@include absolute(br, 20px, calc(50% - 20px));
+			background-color: get(white);
+			color: get(black);
+			font-size: 25px;
+			padding: 10px 15px;
+			border-radius: 50%;
+			transform: translate(calc(50% + 20px));
+			&:hover {
+				background-color: rgba(white, 0.5);
+			}
+			&.prev {
+				right: calc(50% + 20px);
+				transform: translate(calc(50% - 20px));
+			}
+		}
+	}
+}

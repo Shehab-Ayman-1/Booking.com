@@ -1,0 +1,71 @@
+@use "@/assets/sass/mixins" as *;
+
+.loading-section {
+	@include flex(flex-start, center);
+	width: 100%;
+	gap: 10px;
+	.loading-box {
+		width: calc((100% / 3));
+		.big {
+			background-color: #e1e1e1;
+			width: 100%;
+			height: 180px;
+			margin-bottom: 10px;
+			position: relative;
+			overflow: hidden;
+			&::before {
+				@include absolute(tl, 0, 0);
+				background-color: rgba(69, 68, 68, 0.1);
+				content: "";
+				width: 100px;
+				height: 100%;
+				animation: pulse 2s ease-in-out infinite;
+				filter: blur(20px);
+			}
+		}
+		.thin-1 {
+			background-color: #e1e1e1;
+			width: 100%;
+			height: 20px;
+			margin-bottom: 10px;
+			position: relative;
+			overflow: hidden;
+			&::before {
+				@include absolute(tl, 0, 0);
+				background-color: rgba(69, 68, 68, 0.1);
+				content: "";
+				width: 100px;
+				height: 100%;
+				animation: pulse 2s ease-in-out infinite;
+				filter: blur(20px);
+			}
+		}
+		.thin-2 {
+			@extend .thin-1;
+			background-color: #e1e1e1;
+			position: relative;
+			overflow: hidden;
+			&::before {
+				@include absolute(tl, 0, 0);
+				background-color: rgba(69, 68, 68, 0.1);
+				content: "";
+				width: 100px;
+				height: 20px;
+				animation: pulse 2s ease-in-out infinite;
+				filter: blur(20px);
+			}
+		}
+	}
+}
+
+@keyframes pulse {
+	0% {
+		left: -30%;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		left: 110%;
+	}
+}

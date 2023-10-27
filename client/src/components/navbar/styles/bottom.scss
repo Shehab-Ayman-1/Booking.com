@@ -1,0 +1,37 @@
+@use "@/assets/sass/mixins" as *;
+
+.bottom-section {
+	@include flex(flex-start, center);
+	background-color: get(primary);
+	padding: 10px;
+	gap: 15px;
+	overflow-x: auto;
+	.label {
+		border-radius: 20px;
+		border: 1px solid get(primary);
+		&:has(input:checked) {
+			background-color: get(secondary);
+			border: 1px solid get(white);
+		}
+		label {
+			color: get(white);
+			padding: 8px 10px;
+			display: block;
+			user-select: none;
+			cursor: pointer;
+			font-size: 10px;
+			text-align: center;
+			@include width(md) {
+				font-size: initial;
+			}
+		}
+
+		input {
+			display: none;
+		}
+
+		i:hover {
+			color: get(white);
+		}
+	}
+}

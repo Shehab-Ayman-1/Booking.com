@@ -1,0 +1,98 @@
+@use "@/assets/sass/mixins" as *;
+
+.fa-xl {
+	font-size: 18px;
+	@include width(md) {
+		font-size: 20px;
+	}
+	&:hover {
+		color: white;
+	}
+}
+
+.gap {
+	gap: 5px;
+	@include width(md) {
+		gap: 10px;
+	}
+}
+
+.top-section {
+	@include flex(space-between, center);
+	background-color: get(primary);
+	padding: 10px 20px;
+	position: relative;
+	.logo {
+		color: get(white);
+		font-size: 18px;
+		font-weight: bold;
+		@include width(sm) {
+			font-size: 20px;
+		}
+		@include width(md) {
+			font-size: 24px;
+		}
+	}
+	.right-side {
+		@include flex(flex-start, center);
+		gap: 10px;
+		.fa-question-circle {
+			display: none;
+			@include width(sm) {
+				display: block;
+			}
+		}
+		.mybtn {
+			font-size: 10px;
+			padding: 5px 10px;
+			@include width(md) {
+				font-size: 14px;
+				padding: 8px 20px;
+			}
+		}
+		.menu-section {
+			background-color: transparent;
+			.avatar {
+				width: 24px;
+				height: 24px;
+				display: block;
+				border-radius: 50%;
+				@include width(md) {
+					width: 32px;
+					height: 32px;
+				}
+			}
+			.menu {
+				width: 200px;
+				position: fixed;
+				top: 60px;
+				border-radius: 10px;
+				padding-block: 10px;
+				.option {
+					&.name {
+						text-align: center;
+						border-bottom: 1px solid gray;
+						margin-bottom: 10px;
+						text-transform: capitalize;
+					}
+					&:not(.option.name) {
+						@include flex(flex-start, center);
+						&:hover {
+							background-color: #f3f3f3;
+						}
+						h3 {
+							justify-self: flex-start;
+							padding: 5px 10px;
+							margin: 0;
+							text-transform: capitalize;
+							&:nth-child(1) {
+								text-align: center;
+								border-bottom: 1px solid gray;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

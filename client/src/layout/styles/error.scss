@@ -1,0 +1,12 @@
+@use "@/assets/sass/mixins" as *;
+
+.error-section {
+	background-color: rgba(red, 0.7);
+	color: white;
+	width: fit-content;
+	font-size: 20px;
+	font-weight: 500;
+	padding: 10px;
+	margin-top: 10px;
+	border: 1px solid gray;
+}

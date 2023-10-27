@@ -1,0 +1,154 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./global" as *;
+
+.gradient-text {
+	background: linear-gradient(to right, rgb(255, 0, 0), rgb(255, 153, 0));
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.hidden {
+	display: none !important;
+}
+
+// Show & Hide Element
+.hide-height {
+	max-height: 0 !important;
+}
+
+.show-display {
+	display: initial !important;
+}
+
+.hide-display {
+	display: none !important;
+}
+
+.show-scale {
+	transform: scale(1) !important;
+}
+
+.hide-scale {
+	transform: scale(0) !important;
+	height: 0 !important;
+	overflow: hidden;
+}
+
+.mybtn {
+	color: get(black);
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 20px;
+	margin: 15px 0;
+	display: block;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: 0.4s linear !important;
+	@include width(md) {
+		padding: 10px 20px;
+		margin: 10px 0;
+	}
+	@include width(sm) {
+		padding: 10px 15px;
+		margin: 5px 0;
+	}
+	&:hover {
+		background-color: get(secondary) !important;
+		color: get(white) !important;
+		border-color: get(secondary) !important;
+	}
+	&[data-varient="transparent"] {
+		background-color: transparent;
+		color: get(black);
+	}
+	&[data-varient="outline"] {
+		background-color: get(white);
+		border: 2px solid get(primary);
+	}
+	&[data-varient="fill"] {
+		background-color: get(primary);
+		color: get(white);
+	}
+}
+
+// Swiper Library
+.swiper-pagination {
+	bottom: -5px !important;
+	.swiper-pagination-bullet-active {
+		background: get(primary) !important;
+		width: 20px;
+		border-radius: 4px;
+	}
+	.swiper-pagination-bullet {
+		background: get(white);
+	}
+}
+
+.swiper-button-prev {
+	background-color: get(dark-bg);
+	color: get(light-text) !important;
+	width: 40px !important;
+	border-radius: 100%;
+	@include width(sm) {
+		display: none !important;
+	}
+	&:hover {
+		box-shadow: 0 0 10px get(white);
+	}
+	&::after {
+		font-size: 22px !important;
+		font-weight: bold !important;
+	}
+}
+
+.swiper-button-next {
+	@extend .swiper-button-prev;
+}
+
+$vars: ("primary", "secondary", "white", "dimWhite", "white-bg", "black", "dimBlack", "black-bg");
+@each $var in $vars {
+	.text-#{$var} {
+		color: get($var) !important;
+	}
+	.bg-#{$var} {
+		background-color: get($var) !important;
+	}
+}
+.container {
+	max-width: 1280px;
+	margin: auto;
+}
+
+.shadow {
+	box-shadow: get(shadow);
+}
+
+.bg-black-mode {
+	background-color: get(black-mode);
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-between {
+	@include flex(space-between, center);
+}
+
+.flex-center {
+	@include flex(center, center);
+}
+
+.flex-start {
+	@include flex(flex-start, center);
+}
+
+.flex-end {
+	@include flex(flex-end, center);
+}
+
+.w-full {
+	width: 100%;
+}

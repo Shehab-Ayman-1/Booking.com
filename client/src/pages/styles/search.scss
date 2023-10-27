@@ -1,0 +1,18 @@
+@use "@/assets/sass/mixins" as *;
+
+.main-section {
+	@include flex(space-between, flex-start);
+	padding: 20px 0;
+	gap: 20px;
+	.filter-btn {
+		@include fixed(bl, 60px, 50%);
+		transform: translateX(-50%);
+		max-width: 300px;
+		width: 100%;
+		padding: 10px 25px;
+		font-size: 20px;
+		@include width(md) {
+			display: none;
+		}
+	}
+}

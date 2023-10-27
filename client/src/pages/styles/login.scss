@@ -1,0 +1,115 @@
+@use "@/assets/sass/mixins" as *;
+
+.login-section {
+	@include flex(center, center);
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("@/assets/images/london.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+	padding: 15px;
+	@include width(md) {
+		padding: 5px;
+	}
+	.box {
+		background-color: get(white-bg);
+		width: 500px;
+		padding: 20px;
+		opacity: 0.85;
+		box-shadow: get(shadow);
+		.back-icon {
+			color: get(black);
+			font-size: 24px;
+			@include width(md) {
+				font-size: 33px;
+			}
+		}
+		.person-icon {
+			color: get(primary);
+			width: fit-content;
+			text-align: center;
+			font-size: 28px;
+			display: block;
+			margin: auto;
+			margin-bottom: 5px;
+			@include width(md) {
+				font-size: 32px;
+				margin-bottom: 10px;
+			}
+		}
+		.title {
+			text-align: center;
+			font-size: 28px;
+			margin-bottom: 5px;
+			@include width(md) {
+				font-size: 32px;
+				margin-bottom: 10px;
+			}
+		}
+		label {
+			display: block;
+			font-weight: bold;
+			font-size: 16px;
+			@include width(md) {
+				font-size: 20px;
+			}
+		}
+		input {
+			width: 100%;
+			padding: 5px;
+			font-size: 16px;
+			margin-bottom: 10px;
+			border: 1px solid get(dimWhite);
+			&::placeholder {
+				font-size: 14px;
+			}
+			@include width(md) {
+				padding: 10px;
+				margin-bottom: 20px;
+				font-size: 20px;
+				&::placeholder {
+					font-size: initial;
+				}
+			}
+		}
+		.gap {
+			gap: 5px;
+			@include width(md) {
+				gap: 10px;
+			}
+		}
+		.mybtn {
+			width: 100%;
+			font-size: 16px;
+			@include width(md) {
+				font-size: 18px;
+			}
+		}
+		p:has(.have-account) {
+			font-size: 14px;
+			.have-account {
+				color: get(primary);
+				text-align: center;
+				display: block;
+				font-weight: bold;
+				font-size: 14px;
+				&:hover {
+					color: blue;
+					font-weight: bold;
+				}
+				@include width(md) {
+					font-size: 16px;
+				}
+			}
+		}
+		.error {
+			color: red;
+			text-align: center;
+			display: block;
+			font-weight: 500;
+			font-size: 14px;
+			@include width(md) {
+				font-size: inherit;
+			}
+		}
+	}
+}

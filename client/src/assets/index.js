@@ -1,0 +1,26 @@
+import Avatar from "./images/avatar.png";
+import Berlin from "./images/berlin.jpg";
+import Feature1 from "./images/feature 1.jpg";
+import Feature2 from "./images/feature 2.jpg";
+import Feature3 from "./images/feature 3.jpg";
+import Feature4 from "./images/feature 4.jpg";
+import Feature5 from "./images/feature 5.jpg";
+import Feature6 from "./images/feature 6.jpg";
+import Feature7 from "./images/feature 7.jpg";
+import Furnitur1 from "./images/furnitur 1.jpg";
+import Furnitur2 from "./images/furnitur 2.jpg";
+import Furnitur3 from "./images/furnitur 3.jpg";
+import Furnitur4 from "./images/furnitur 4.jpg";
+import Hotel1 from "./images/hotel 1.jpg";
+import Hotel2 from "./images/hotel 2.jpg";
+import Hotel3 from "./images/hotel 3.jpg";
+import Hotel4 from "./images/hotel 4.jpg";
+import Hotel5 from "./images/hotel 5.jpg";
+import Hotel6 from "./images/hotel 6.jpg";
+import London from "./images/london.jpg";
+import Madrid from "./images/madrid.jpg";
+
+export { Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, Feature7 };
+export { Hotel1, Hotel2, Hotel3, Hotel4, Hotel5, Hotel6 };
+export { Furnitur1, Furnitur2, Furnitur3, Furnitur4 };
+export { London, Madrid, Berlin, Avatar };
