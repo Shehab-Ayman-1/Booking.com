@@ -53,9 +53,10 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 		navigate(`/hotel/${_id}`, { replace: true, preventScrollReset: false });
 	};
 
+	if (hotels.loading) return <Loading limit={3} />;
+
 	return (
 		<div className={`right-section ${controller.openSearchPage ? "part-width" : "full-width"}`}>
-			{hotels.loading && <Loading limit={3} />}
 			{hotels.error && <Error message="Hotels Not Found, Please Try Again." />}
 			{!hotels.loading && !hotels.error && !hotels.data?.length && <h3>No Hotels Found.</h3>}
 
