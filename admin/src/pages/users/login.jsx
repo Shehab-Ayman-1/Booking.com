@@ -53,7 +53,7 @@ export function Login() {
                   {status !== 203 && !error && !loading && typeof data === "string" && (
                      <h3 className="border-b border-t border-r border-l border-green-900 bg-green-500/20 p-2 text-center text-green-500">{data}</h3>
                   )}
-                  {loading && <p>Loading...</p>}
+                  {loading && <p className="w-full text-center text-green-500">Loading...</p>}
                   {status !== 203 && error && !loading && <h3 className="border-b border-t border-r border-l border-red-900 bg-red-500/20 p-2 text-center text-red-500">{error}</h3>}
                   {jwtExp && <h3 className="border-b border-t border-r border-l border-red-900 bg-red-500/20 p-2 text-center text-red-500">{jwtExp}</h3>}
                   <Input type="email" label={formData.email} name="email" size="lg" disabled={loading} onChange={handleChange} />
