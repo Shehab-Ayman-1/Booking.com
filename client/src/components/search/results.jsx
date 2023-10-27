@@ -32,7 +32,7 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 			return { from: _from, to: _to };
 		});
 
-		window.scrollTo({ top: 0 });
+		setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
 	};
 
 	const prevWidget = () => {
@@ -44,7 +44,7 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 			return { from: _from, to: _to };
 		});
 
-		window.scrollTo({ top: 0 });
+		setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
 	};
 
 	const handleNavigate = async (_id) => {

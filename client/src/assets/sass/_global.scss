@@ -18,11 +18,11 @@ html {
 	width: 100vw;
 	overflow-x: hidden;
 	* ::-webkit-scrollbar {
-		width: 2px !important;
+		width: 7px !important;
 		height: 5px !important;
 	}
 	::-webkit-scrollbar {
-		width: 7px;
+		width: 10px;
 	}
 	::-webkit-scrollbar-thumb {
 		background: get(primary);
