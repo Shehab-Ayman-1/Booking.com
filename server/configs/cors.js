@@ -1,11 +1,5 @@
-const whiteList = [
-	"https://booking-com-admin.netlify.app",
-	"https://booking-com-client.netlify.app",
-	"https://booking-app-server.netlify.app",
-	"http://localhost:5000",
-	"http://localhost:5173",
-	"http://localhost:5174",
-];
+const localhosts = ["http://localhost:3000", "http://localhost:5173", "http://localhost:5174"];
+const whiteList = [...localhosts, "https://booking-com-client.vercel.app", "https://booking-com-admin.vercel.app"];
 
 export const corsOrigins = {
 	origin: (origin, callback) => {
