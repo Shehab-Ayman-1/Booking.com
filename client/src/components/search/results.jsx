@@ -31,6 +31,8 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 			let _to = to + 5 <= hotelsCount + 5 ? to + 5 : to;
 			return { from: _from, to: _to };
 		});
+
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
 	const prevWidget = () => {
@@ -41,6 +43,8 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 			let _to = to - 5 <= 0 ? 5 : to - 5;
 			return { from: _from, to: _to };
 		});
+
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
 	const handleNavigate = async (_id) => {
