@@ -38,7 +38,7 @@ export const Users = () => {
                           <TrashIcon /> Delete
                        </Button>
                     </td>
-                    <td className={`${td}`}>
+                    <td className={`${td} text-left`}>
                        <Avatar src={avatar || User} alt={fName} className="mr-2 ml-2 h-[32px] w-[32px]" />
                        <Typography variant="small" className={`${typography} inline-block`}>
                           {fName} {lName}
