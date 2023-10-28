@@ -36,7 +36,7 @@ export const FilterOptions = ({ selectedCity, setSelectedCity, openFilter, setOp
 	}, []);
 
 	useEffect(() => {
-		if (!stopRefetch) return setStopRefetch(true);
+		if (!stopRefetch || openFilter) return setStopRefetch(true);
 
 		Refetch("get", `/hotels/get-hotels?city=${formData.city || "All Locations"}&min=${formData.price.min}&max=${formData.price.max}&from=${widgetNo}`);
 	}, [widgetNo, formData.city, stopRefetch]);

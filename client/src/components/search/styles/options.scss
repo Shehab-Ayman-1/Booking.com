@@ -43,9 +43,9 @@
 	}
 	.close-options-icon {
 		@include absolute(tr, 10px, 10px);
-		text-align: end;
 		font-size: 22px;
 		font-weight: bold;
+		text-align: end;
 		cursor: pointer;
 		@include width(md) {
 			display: none;

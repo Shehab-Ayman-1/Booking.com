@@ -41,6 +41,7 @@ export const FilterResults = ({ widgetNo, setWidgetNo }) => {
 		<div className={`right-section ${controller.openSearchPage ? "part-width" : "full-width"}`}>
 			{hotels.error && <Error message="Hotels Not Found, Please Try Again." />}
 			{!hotels.loading && !hotels.error && !hotels.data?.length && <h3>No Hotels Found.</h3>}
+
 			{hotels.data?.map(({ _id, name, type, address, city, description, distance, price, rating, photos }, i) => (
 				<div className="box" key={i}>
 					<div className="img">
@@ -51,7 +52,7 @@ export const FilterResults = ({ widgetNo, setWidgetNo }) => {
 							<h1 className="title">{name}</h1>
 							<span className="rate">
 								{rating}
-								<i className="fas fa-star" />
+								{rating > 8 ? <i className="fas fa-star" /> : rating <= 5 ? <i className="far fa-star" /> : <i className="fas fa-star-half-alt" />}
 							</span>
 						</div>
 						<p className="address">
@@ -78,6 +79,7 @@ export const FilterResults = ({ widgetNo, setWidgetNo }) => {
 					</div>
 				</div>
 			))}
+
 			<div className="next-prev">
 				<button className="fa fa-arrow-left text-black bg-white" disabled={hotels.loading} onClick={prevWidget} />
 				<div className="">

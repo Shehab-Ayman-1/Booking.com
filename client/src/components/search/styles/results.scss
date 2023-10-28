@@ -14,13 +14,13 @@
 	.box {
 		@include flex(space-between, center);
 		background-color: transparent;
-		padding-left: 10px;
 		margin-bottom: 20px;
 		position: relative;
 		flex-direction: column;
 		border-radius: 10px;
 		box-shadow: 0 0 15px get(dimBlack);
 		@include width(md) {
+			padding-left: 10px;
 			flex-direction: row;
 		}
 		.img {

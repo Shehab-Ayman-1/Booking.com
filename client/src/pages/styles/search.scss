@@ -6,11 +6,12 @@
 	gap: 20px;
 	.filter-btn {
 		@include fixed(bl, 60px, 50%);
-		transform: translateX(-50%);
 		max-width: 300px;
 		width: 100%;
-		padding: 10px 25px;
 		font-size: 20px;
+		padding: 10px 25px;
+		box-shadow: get(shadow);
+		transform: translateX(-50%);
 		@include width(md) {
 			display: none;
 		}
