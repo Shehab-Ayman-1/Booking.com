@@ -4,12 +4,12 @@ import bcrypt from "bcryptjs";
 
 export const GET_USERS = async (req, res) => {
 	try {
-		const { from, to } = req.query;
-		const documentsCount = await Users.countDocuments();
-		const users = await Users.find().limit(to || 5);
+		const { from } = req.query;
+		const count = await Users.countDocuments();
+		const users = await Users.find().skip(from).limit(5);
 
-		if (from && to) res.status(200).json({ count: documentsCount, users: users.slice(from, to) });
-		else res.status(200).json({ count: documentsCount, users });
+		if (from) res.status(200).json({ count, users });
+		else res.status(200).json({ count, users });
 	} catch (error) {
 		res.status(404).json(`GET_USERS ${error.message}`);
 	}
