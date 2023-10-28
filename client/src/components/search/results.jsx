@@ -1,49 +1,33 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Error, Loading } from "@/layout";
-import { useAxios } from "@/hooks";
+import { Error } from "@/layout";
 import useContext from "@/context";
 import "./styles/results.scss";
 
-export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
-	const [hotels, setHotels] = useState({ data: [], loading: true, error: false });
-	const { data: hotelsCount, Refetch } = useAxios("get", "/");
+export const FilterResults = ({ widgetNo, setWidgetNo }) => {
+	const [hotels, setHotels] = useState({ data: [], hotelsCount: 1, loading: true, error: false });
 	const { hotelsState } = useContext(0);
 	const { controller } = useContext(2);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		Refetch("get", `/hotels/get-hotels-count?city=${selectedCity || "All Locations"}`);
-	}, [selectedCity]);
-
-	useEffect(() => {
 		(async () => {
-			let { hotels, loading, error } = await hotelsState;
-			setHotels((h) => (h = { data: hotels, loading, error }));
+			let { hotels, hotelsCount, loading, error } = await hotelsState;
+			setHotels((h) => (h = { data: hotels, hotelsCount, loading, error }));
 		})();
 	}, [hotelsState]);
 
 	const nextWidget = () => {
-		if (widgetNo.from + 5 >= hotelsCount) return;
+		if (widgetNo + 5 >= hotels.hotelsCount) return;
 
-		setWidgetNo(({ from, to }) => {
-			let _from = from + 5 <= hotelsCount ? from + 5 : from;
-			let _to = to + 5 <= hotelsCount + 5 ? to + 5 : to;
-			return { from: _from, to: _to };
-		});
-
+		setWidgetNo((w) => (w = w + 5));
 		setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
 	};
 
 	const prevWidget = () => {
-		if (widgetNo.from === 0 || widgetNo.to === 5) return;
+		if (widgetNo - 5 <= 0) return;
 
-		setWidgetNo(({ from, to }) => {
-			let _from = from - 5 <= 0 ? 0 : from - 5;
-			let _to = to - 5 <= 0 ? 5 : to - 5;
-			return { from: _from, to: _to };
-		});
-
+		setWidgetNo((w) => (w = w - 5));
 		setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
 	};
 
@@ -57,7 +41,6 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 		<div className={`right-section ${controller.openSearchPage ? "part-width" : "full-width"}`}>
 			{hotels.error && <Error message="Hotels Not Found, Please Try Again." />}
 			{!hotels.loading && !hotels.error && !hotels.data?.length && <h3>No Hotels Found.</h3>}
-
 			{hotels.data?.map(({ _id, name, type, address, city, description, distance, price, rating, photos }, i) => (
 				<div className="box" key={i}>
 					<div className="img">
@@ -95,17 +78,14 @@ export const FilterResults = ({ selectedCity, widgetNo, setWidgetNo }) => {
 					</div>
 				</div>
 			))}
-
-			{hotels.data?.length && (
-				<div className="next-prev">
-					<button className="fa fa-arrow-left text-black bg-white" disabled={hotels.loading} onClick={prevWidget} />
-					<div className="">
-						<span className="count">{widgetNo?.from / 5 + 1}</span>
-						<span className="count"> / {typeof hotelsCount === "number" ? Math.ceil(hotelsCount / 5) : 0}</span>
-					</div>
-					<button className="fa fa-arrow-right text-black bg-white" disabled={hotels.loading} onClick={nextWidget} />
+			<div className="next-prev">
+				<button className="fa fa-arrow-left text-black bg-white" disabled={hotels.loading} onClick={prevWidget} />
+				<div className="">
+					<span className="count">{widgetNo / 5 + 1}</span>
+					<span className="count"> / {Math.ceil(+hotels.hotelsCount / 5)}</span>
 				</div>
-			)}
+				<button className="fa fa-arrow-right text-black bg-white" disabled={hotels.loading} onClick={nextWidget} />
+			</div>
 		</div>
 	);
 };

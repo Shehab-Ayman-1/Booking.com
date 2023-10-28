@@ -6,16 +6,21 @@ import useContext, { UPDATE_HOTELS } from "@/context";
 import "./styles/options.scss";
 
 const today = new Date();
-const formState = { city: "All Locations", options: { adults: 1, children: 1, rooms: 1 }, price: { min: 1, max: 1000 } };
-export const FilterOptions = ({ setSelectedCity, widgetNo, cities, openFilter, setOpenFilter }) => {
+const formState = { city: "All Locations", options: { adults: 1, children: 1, rooms: 1 }, price: { min: 0, max: 0 } };
+export const FilterOptions = ({ selectedCity, setSelectedCity, openFilter, setOpenFilter, widgetNo, setWidgetNo, cities }) => {
+	const { data: hotels, loading, error, Refetch } = useAxios("get", `/`);
 	const { hotelsState, hotelsDispatch } = useContext(0);
 	const [formData, setFormData] = useState(formState);
 	const [calender, setCalender] = useState([{ startDate: today, endDate: today, key: "selection" }]);
-	const { data: hotels, loading, error, Refetch } = useAxios("get", `/`);
+	const [stopRefetch, setStopRefetch] = useState(false);
+
+	useEffect(() => {
+		setWidgetNo((w) => (w = 0));
+	}, [selectedCity]);
 
 	useEffect(() => {
 		setSelectedCity(() => formData.city);
-		(async () => await hotelsDispatch(UPDATE_HOTELS({ hotels, loading, error })))();
+		(async () => await hotelsDispatch(UPDATE_HOTELS({ hotels: hotels.hotels, hotelsCount: hotels.count, loading, error })))();
 	}, [hotels, loading, error]);
 
 	useEffect(() => {
@@ -31,8 +36,10 @@ export const FilterOptions = ({ setSelectedCity, widgetNo, cities, openFilter, s
 	}, []);
 
 	useEffect(() => {
-		Refetch("get", `/hotels/get-hotels?city=${formData.city || "All Locations"}&min=${formData.price.min}&max=${formData.price.max}&from=${widgetNo.from}&to=${widgetNo.to}`);
-	}, [widgetNo]);
+		if (!stopRefetch) return setStopRefetch(true);
+
+		Refetch("get", `/hotels/get-hotels?city=${formData.city || "All Locations"}&min=${formData.price.min}&max=${formData.price.max}&from=${widgetNo}`);
+	}, [widgetNo, formData.city, stopRefetch]);
 
 	const handleData = useCallback(
 		({ target }) => {
@@ -54,6 +61,7 @@ export const FilterOptions = ({ setSelectedCity, widgetNo, cities, openFilter, s
 	const handleRefetch = () => {
 		Refetch("get", `/hotels/get-hotels?city=${formData.city || "All Locations"}&min=${formData.price.min}&max=${formData.price.max}`);
 		setOpenFilter((o) => (o = false));
+		setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
 	};
 
 	const startDate = new Date(calender[0].startDate)?.toLocaleDateString();
@@ -82,7 +90,12 @@ export const FilterOptions = ({ setSelectedCity, widgetNo, cities, openFilter, s
 				<div className="dates">
 					<h3>Check In Dates</h3>
 					<div className="calender">
-						<Menu title={`From: ${startDate} - To: ${endDate}`}>
+						<Menu
+							title={
+								<div>
+									{<p>From: {startDate}</p>} {<p>To: {endDate}</p>}
+								</div>
+							}>
 							<DateRange editableDateInputs={true} onChange={({ selection }) => setCalender([selection])} moveRangeOnFirstSelection={false} ranges={calender} />
 						</Menu>
 					</div>

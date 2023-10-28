@@ -13,6 +13,7 @@ export const useAxios = (process, url, body) => {
 
 	const fetcher = async (process, url, body) => {
 		if (url === "/") return;
+
 		try {
 			setLoading((l) => (l = true));
 			setError((e) => (e = false));
@@ -26,9 +27,10 @@ export const useAxios = (process, url, body) => {
 				return { data: response?.data, loading: false, error: false };
 			}
 		} catch (error) {
+			console.warn(error);
 			const err = error?.response?.data || error?.message || "Something Has An Error.";
 			setError(() => err);
-			console.warn(error);
+			setData(() => []);
 			setTimeout(() => setError((e) => (e = null)), 5000);
 			return { loading: false, error: err };
 		} finally {

@@ -30,12 +30,13 @@ export const GET_DEFAULT_HOTELS = async (req, res) => {
 
 export const GET_LIMITED_HOTELS = async (req, res) => {
 	try {
-		const { from, to } = req.query;
-		const documentsCount = await Hotels.countDocuments();
-		const hotels = await Hotels.find().limit(to || 5);
+		const { from } = req.query;
 
-		if (from && to) res.status(200).json({ count: documentsCount, hotels: hotels.slice(from, to) });
-		else res.status(200).json({ count: documentsCount, hotels });
+		const documentsCount = await Hotels.countDocuments();
+		const hotels = await Hotels.find().skip(from).limit(5);
+
+		if (from) return res.status(200).json({ count: documentsCount, hotels });
+		res.status(200).json({ count: documentsCount, hotels });
 	} catch (error) {
 		res.status(404).json(error.message);
 	}
@@ -43,24 +44,36 @@ export const GET_LIMITED_HOTELS = async (req, res) => {
 
 export const GET_HOTELS = async (req, res) => {
 	try {
-		const { limit, min, max, city, from, to, ...query } = req.query;
-		const price = { $gt: min || 0, $lt: max || 999 };
+		const { limit, min, max, city, from, ...query } = req.query;
+		const price = { $gt: +min || 0, $lt: +max || 9999 };
 
 		if (city === "All Locations") {
-			if (from && to) {
-				const hotels = await Hotels.find({ ...query, price }).limit(to || 5);
-				res.status(200).json(hotels.slice(from, to));
+			if (from) {
+				const count = await Hotels.find({ ...query, price }).countDocuments();
+				const hotels = await Hotels.find({ ...query, price })
+					.skip(from)
+					.limit(5);
+
+				res.status(200).json({ hotels, count });
 			} else {
+				const count = await Hotels.find({ ...query, price }).countDocuments();
 				const hotels = await Hotels.find({ ...query, price }).limit(limit || 10);
-				res.status(200).json(hotels);
+
+				res.status(200).json({ hotels, count });
 			}
 		} else {
-			if (from && to) {
-				const hotels = await Hotels.find({ ...query, city, price }).limit(to || 5);
-				res.status(200).json(hotels.slice(from, to));
+			if (from) {
+				const count = await Hotels.find({ ...query, city, price }).countDocuments();
+				const hotels = await Hotels.find({ ...query, city, price })
+					.skip(from)
+					.limit(5);
+
+				res.status(200).json({ hotels, count });
 			} else {
+				const count = await Hotels.find({ ...query, city, price }).countDocuments();
 				const hotels = await Hotels.find({ ...query, city, price }).limit(limit || 10);
-				res.status(200).json(hotels);
+
+				res.status(200).json({ hotels, count });
 			}
 		}
 	} catch (error) {

@@ -9,16 +9,20 @@
 		}
 	}
 	.features {
-		@include grid(150px);
+		@include grid(200px);
 		gap: 20px;
 		@include width(sm) {
-			@include grid(200px);
+			@include grid(250px);
 		}
 		.feature {
+			position: relative;
 			img {
 				width: 100%;
-				min-height: 300px;
+				min-height: initial;
 				object-fit: cover;
+				@include width(sm) {
+					min-height: 400px;
+				}
 				@include width(md) {
 					min-height: 400px;
 				}
@@ -29,11 +33,22 @@
 			.rate {
 				@include flex(flex-start, center);
 				gap: 20px;
+				white-space: nowrap;
 				span {
+					@include absolute(tr, 10px, 10px);
 					background-color: get(primary);
 					color: white;
 					padding: 3px 5px;
 					font-weight: bold;
+					@include width(md) {
+						position: initial;
+					}
+				}
+				p {
+					display: none;
+					@include width(md) {
+						display: initial;
+					}
 				}
 			}
 		}

@@ -5,13 +5,13 @@ import { Button, Typography } from "@material-tailwind/react";
 import { useAxios } from "@/hooks";
 
 export const Table = ({ states = [], dispatch, title, addButton, headers, paginationURL, children }) => {
-   const [widgetNo, setWidgetNo] = useState({ from: 0, to: 5 });
+   const [widgetNo, setWidgetNo] = useState(0);
    const { loading, refetch } = useAxios("get", "/");
    const navigate = useNavigate();
 
    useEffect(() => {
       (async () => {
-         let { data, loading, error } = await refetch("get", `${paginationURL}?from=${widgetNo.from}&to=${widgetNo.to}`);
+         let { data, loading, error } = await refetch("get", `${paginationURL}?from=${widgetNo}`);
 
          if (!loading && !error && data?.users?.length) dispatch({ type: "GET_AUTHS", payload: data });
          if (!loading && !error && data?.hotels?.length) dispatch({ type: "GET_Hotels", payload: data });
@@ -19,23 +19,13 @@ export const Table = ({ states = [], dispatch, title, addButton, headers, pagina
    }, [widgetNo]);
 
    const nextWidget = () => {
-      if (widgetNo.from + 5 >= states?.count) return;
-
-      setWidgetNo(({ from, to }) => {
-         let _from = from + 5 <= states?.count ? from + 5 : from;
-         let _to = to + 5 <= states?.count + 5 ? to + 5 : to;
-         return { from: _from, to: _to };
-      });
+      if (widgetNo + 5 >= states?.count) return;
+      setWidgetNo((w) => (w + 5 <= states?.count ? w + 5 : w));
    };
 
    const prevWidget = () => {
-      if (widgetNo.from === 0 || widgetNo.to === 5) return;
-
-      setWidgetNo(({ from, to }) => {
-         let _from = from - 5 <= 0 ? 0 : from - 5;
-         let _to = to - 5 <= 0 ? 5 : to - 5;
-         return { from: _from, to: _to };
-      });
+      if (widgetNo === 0) return;
+      setWidgetNo((w) => (w - 5 <= 0 ? 0 : w - 5));
    };
 
    return (
@@ -73,7 +63,7 @@ export const Table = ({ states = [], dispatch, title, addButton, headers, pagina
                   <tr>
                      <td className="flex min-w-[150px] items-center justify-start gap-4 whitespace-nowrap" colSpan={headers.length}>
                         <button className="fa fa-arrow-left mr-1 cursor-pointer text-3xl text-black transition hover:text-blue-500" disabled={loading} onClick={prevWidget} />
-                        <span className="count">{widgetNo?.from / 5 + 1}</span>
+                        <span className="count">{widgetNo / 5 + 1}</span>
                         <span className="count"> / {Math.ceil(states?.count / 5)}</span>
                         <button className="fa fa-arrow-right ml-1 cursor-pointer text-3xl text-black transition hover:text-blue-500" disabled={loading} onClick={nextWidget} />
                      </td>

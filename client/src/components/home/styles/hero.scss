@@ -10,6 +10,7 @@
 	@include width(md) {
 		padding: 10px 20px;
 	}
+
 	.hero {
 		text-align: center;
 		padding-bottom: 100px;
@@ -33,6 +34,7 @@
 				font-size: 50px;
 			}
 		}
+
 		.description {
 			color: #aaa;
 			font-size: 12px;
@@ -54,10 +56,12 @@
 				margin-bottom: 30px;
 			}
 		}
+
 		button {
 			margin: 10px auto;
 		}
 	}
+
 	.search {
 		@include flex(space-between, center);
 		background-color: get(white);
@@ -68,10 +72,12 @@
 		@include width(md) {
 			flex-wrap: nowrap;
 		}
+
 		& > div {
 			width: 100%;
 			margin-right: 10px;
 		}
+
 		.locations {
 			z-index: 3;
 			margin-bottom: 10px;
@@ -132,6 +138,7 @@
 				}
 			}
 		}
+
 		.options {
 			z-index: 1;
 			p {
@@ -172,6 +179,15 @@
 						user-select: none;
 					}
 				}
+			}
+		}
+
+		.mybtn {
+			width: 100%;
+			margin-bottom: 0;
+			@include width(md) {
+				width: fit-content;
+				margin-bottom: auto;
 			}
 		}
 	}

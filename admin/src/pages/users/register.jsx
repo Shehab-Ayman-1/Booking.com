@@ -19,6 +19,7 @@ export function Register() {
 
    const handleSubmit = async () => {
       if (!formData.avatar) return setError(() => "Avatar Image Is A Required Field.");
+
       const file = new FormData();
       file.append("file", formData.avatar);
       file.append("upload_preset", "upload");

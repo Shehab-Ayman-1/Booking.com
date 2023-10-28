@@ -19,9 +19,10 @@ export const Features = () => {
 						<h4>Starting From ${price}</h4>
 						<div className="rate">
 							<span>
-								{rating} <i className="fas fa-star" />
+								{rating}
+								{rating > 8 ? <i className="fas fa-star" /> : rating <= 5 ? <i className="far fa-star" /> : <i className="fas fa-star-half-alt" />}
 							</span>
-							<p>{rating > 8 ? "Exceptional" : "Excellent"}</p>
+							<p>{rating > 6 ? "Exceptional" : "Excellent"}</p>
 						</div>
 					</div>
 				))}
